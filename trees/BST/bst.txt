@@ -1,0 +1,10 @@
+Asearch insertion and remove are all O(log n) 
+In worth case tese are all 0(n) however we can avoid the worst case by keeping the binary search tree balanced. Binary search tree is a binary tree for in which each node, value of all the nodes in leftsubtree are less than or equal and all the nodes in the right subtree are greater
+
+Why is a binary search tree log n base 2 time
+
+The reason why is this consider the array [8 10 12 15 17 20 25] and we performed binary search on the array for element 10. We would split the element in half and the remaining array is now [8 10 12] We now split it again and we find the leement. We had to take 3 steps and 2^3 ~ 7 this is why this is a log n search
+
+We call a tree balanced if for all nodes the differnces in height of the left subtree and the right subtree are not greater than 1.. therefore when we start. You can have essentially a linked list and it is sitll considered a binary search tree but is not balanced then retrieval insertion and deletion of an elmeent is now 0(n). The reason for something to be balanced is when we move to an ode we cut the amount of data in half. If a tree is unbalanced this doesnt happen. 
+
+Binary search tree gets unbalanced often after insertion and deletion you have to re balance it
