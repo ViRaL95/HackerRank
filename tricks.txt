@@ -13,10 +13,10 @@ for index, element in reversed(list(enumerate(d))):
 #dont splice list when you need to maintain its index
 
 #iterate through a dictionary doing the following
-
+#python3
 for key, value in d.items():
     print(key)
-    print(value
+    print(value)
 
 
 you cant do this 
@@ -25,3 +25,16 @@ element = "4 5 6"
 you have to cast d after
 
 #ALso remember that when you are doing division in python3 7/2 will equal 3.5 and not 3, which is not the case in python2
+
+if you would like to join several elements in a list together and form a string with dashes in the middle
+
+d=['a','b','c']
+'-'.join(d)
+
+#returns all the elements in the array after and including the first element
+d[1:]
+#returns index 0 and index 1 of d
+d[0:2]
+#returns index 0 and 1 of d
+d[:2]
+
