@@ -37,4 +37,17 @@ d[1:]
 d[0:2]
 #returns index 0 and 1 of d
 d[:2]
+#iterates through elemnets 0, 6 by values of 2
+range(0, 6, 2) 
 
+
+Scope:
+    variables declared inside an if statement, while and for loops are still assigned to the functiono, class or module unlike java. A variable not existing yet is different from it being None. for example. A name error is thrown if a variable doesnt exist and tries to be used
+
+#In this case a is not defined at all and a Name Error is thrown because it doesnt exist. One can always use a try and except block to atch the NameError but rather it is cleaner to define a to be None prior.
+if (not a):
+    d = c*y
+
+a = None
+if not a:
+    d = c*y
