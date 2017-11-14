@@ -51,3 +51,31 @@ if (not a):
 a = None
 if not a:
     d = c*y
+
+Some python objects are immutable which means that they can not be changed but rather return new ojects when attempting to update. For example int float deecimal copmlex bool string tuple range frozen set bytes are all immutable. When its value is changed it returns a new object.
+
+Lets say we do the following
+
+a = b = [7,8,9]
+and then we do a.pop() 
+id(a) == id(b) will be True afterwards. The reason for this is because a and b are immutable objectsi
+
+
+The values that are mutable are list, dict, set, bytearray (i.e elements that have methods that can change the value). (Tuples are not mutable)
+
+
+Call by reference
+
+def updateList(list1)
+    list1 += 10
+
+def updateList(n):
+    n += [10]
+n = [5,6]
+print(id(n))
+print(n)
+updateList(n)
+print(n)
+print(id(n))
+
+we have called the list via call by reference so the changes are made to the original list themselves
