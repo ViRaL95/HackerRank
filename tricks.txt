@@ -79,3 +79,16 @@ print(n)
 print(id(n))
 
 we have called the list via call by reference so the changes are made to the original list themselves
+
+In python2 if you want to print without a new line at the end you can simply put a comma like this
+
+print root.data,
+
+
+Bitwise operation:
+x & y 
+does a bitwise and
+
+x|y bit wise or
+~ x bit wise not
+x ^ y bit wise exclusive or

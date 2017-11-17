@@ -83,6 +83,18 @@ class Node:
             return self.left.find_min()
         return self.data
 
+    
+    def left_view(self):
+        if not self:
+            return
+        print("yai")
+        print (self.data)
+        if self.left:
+            print("self left data is %d"%self.left.data)
+            return self.left.left_view()
+        elif self.right:
+            print("self right data is %d"%self.right.data)
+            return self.right.left_view()
 
 class Tree:
     def __init__(self, root=None):
@@ -100,12 +112,10 @@ class Tree:
     def pre_order_traversal(self):
         self.root.pre_order_traversal()
 
-    
     def search(self, data):
         if not self.root:
             return False
         self.root.search(data)
-
 
     def find_height(self):
         return self.root.find_height(self.root)
@@ -119,6 +129,9 @@ class Tree:
     def find_min(self):
         return self.root.find_min()
 
+    def left_view(self):
+        return self.root.left_view()
+
 if __name__ == '__main__':
     tree = Tree()
     tree.insert(5)
@@ -127,8 +140,12 @@ if __name__ == '__main__':
     tree.insert(7)
     tree.insert(8)
     tree.insert(4)
+    tree.insert(2)
+    tree.insert(3)
     tree.pre_order_traversal()
     print("height of tree is %d"%tree.find_height())
     print("depth of node 8 is %d"%tree.find_depth(8))
     print(tree.find_max())
     print(tree.find_min())
+    print("left view of tree")
+    print(tree.left_view())
