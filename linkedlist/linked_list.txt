@@ -1,3 +1,5 @@
 searching a linked list is 0(n)
 insert into a linked list is 0(1
 Removal is 0(n)
+
+Linked lists unlike arrays are not grouped together in memory. This is advantageous because when adding elements to this linked list we will never reach its max size have to free its location in memory and copy the array into a new location.

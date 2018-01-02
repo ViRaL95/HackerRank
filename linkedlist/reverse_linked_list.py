@@ -15,6 +15,7 @@ def reverse(head):
             first_pointer = second_pointer
     return last
 
+
 if __name__=='__main__':
     head = temp = Node()
     temp.data = 5
@@ -23,7 +24,8 @@ if __name__=='__main__':
         next_node.data = i
         temp.next_node = next_node
         temp = temp.next_node
-    pointer = reverse(head)
+    pointer = reverse_practice(head)
+    #pointer = reverse(head)
     while (pointer):
         print("entered")
         print(pointer.data)

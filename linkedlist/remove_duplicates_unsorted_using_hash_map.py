@@ -18,7 +18,9 @@ def remove_duplicates(head):
             previous = previous.next_node
         current = current.next_node
     previous.next_node = None;
-    return return_node
+    return head
+
+
 
 if __name__ == '__main__':
     linked_list = None
@@ -36,6 +38,9 @@ if __name__ == '__main__':
                 linked_list = linked_list.next_node
             end += 1
         start += 1
+    linked_list.next_node = Node(data=11)
+    linked_list = linked_list.next_node
+    test = head
     link = remove_duplicates(head)
     while (link):
         print(link.data)
