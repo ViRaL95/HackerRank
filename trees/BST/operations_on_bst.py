@@ -1,14 +1,17 @@
 class Link_Node:
-        def __init__(self, data=None, next_node=None):
+        
+        def __init__(self, data=None, next_node=None, prev_node=None):
             self.data = data
             self.next_node = next_node
+            self.prev_node = prev_node
+        
 
 class Node:
     def __init__(self, left=None, right=None, data=None):
         self.left = left
         self.right = right
         self.data = data
-
+        self.max_top = None
     
     def insert(self, data):
         if self.data == data:
@@ -69,13 +72,31 @@ class Node:
             return max(self.find_height(root.left), self.find_height(root.right)) + 1
     #the depth of a node is the number of edges from the node to the trees root node, root will have 
     #depth of 0
-    def find_depth(self, data):
-        if self.data == data:
+
+
+    def find_height_wo(self):
+        """Find height of tree without passing root as parameter to function.
+
+        """ 
+        if not (self.left or self.right):
             return 0
+        if not self.left:
+            return 1 + max(0, self.right.find_height_wo())
+        if not self.right:
+            return 1 + max(self.left.find_height_wo(), 0)
+        return 1 + max(self.left.find_height_wo(), self.right.find_height_wo())
+        
+ 
+    #depth of a node is the number of nodes from the root node
+    #for each 
+    def find_depth(self, data, depth):
+        if self.data == data:
+            return depth
         if self.data > data:
-            return 1 + self.left.find_depth(data)
-        elif self.data < data:
-            return 1 + self.right.find_depth(data)
+            return self.left.find_depth(data, depth + 1)
+        if self.data < data:
+            return self.right.find_depth(data, depth + 1)
+
 
     def find_max(self):
         """It is very important to know WHEN to use return and when not to use return. 
@@ -87,7 +108,7 @@ class Node:
         time and then return to its parent
         """
         if self.right:
-            self.right.find_max()
+            return self.right.find_max()
         return self.data
 
     
@@ -148,13 +169,87 @@ class Node:
                 head = head.next_node
             head.next_node = node
 
+
+    def create_doubly_linkedlist(self, prev_node):
+        if self.left:
+            self.left.create_doubly_linked_list(prev_node)
+        global prev
+
+
+        try:
+            prev
+        except NameError:
+            prev = prev_node
+        new_node = Link_Node(self.data)
+        prev.next_node = new_node
+        new_node.prev_node = prev
+        prev = new_node
+
+        if self.right:
+            self.right.create_doubly_linked_list(prev_node)
+
+    
+    def find_distance_between_nodes(self, data1, data2):
+        if self.data < data1 and self.data < data2:
+            return self.right.find_distance_between_nodes(data1, data2)
+        
+        if self.data > data1 and self.data > data2:
+            return self.left.find_distance_between_nodes(data1, data2)
+
+        if self.data >= data1 and self.data <= data2:
+            return self.find_height(data1) + self.find_height(data2)
+
+
+
+    def find_height(self, data):
+        if self.data == data:
+            return 0
+
+        if self.data > data:
+            return 1 + self.left.find_height(data)
+
+        if self.data < data:
+            return 1 + self.right.find_height(data)
+
+    def delete_leaves(self):
+        """ This function will delete all leaves from a tree, but if the root is the only
+        node given it will not delete itself
+        """
+        if not (self.left or self.right):
+            return True
+        if self.left:
+            delete = self.left.delete_leaves()
+            if delete is True:
+                self.left = None
+        if self.right:
+            delete = self.right.delete_leaves()
+            if delete is True:
+                self.right = None
+
+    def delete_leaves_2(self, root):
+        """ This functino will delete all leaves from  tree including the original
+
+        """
+        if not (root.left or root.right):
+            print("delete")
+            print(root.data)
+            print("---------")
+            root = None
+            return
+
+        if root.left:
+            self.delete_leaves_2(root.left)
+
+        if root.right:
+            self.delete_leaves_2(root.right)
+
+
 class Tree:
     def __init__(self, root=None):
         self.root = root
     
     def insert(self, data):
         if not self.root:
-            print("entered")
             self.root = Node()
             self.root.data = data
         else:
@@ -172,8 +267,6 @@ class Tree:
     def find_height(self):
         return self.root.find_height(self.root)
     
-    def find_depth(self, data):
-        return self.root.find_depth(data)
     
     def find_max(self):
         return self.root.find_max()
@@ -190,29 +283,79 @@ class Tree:
     def create_linked_list_each_depth(self, hash_map):
         return self.root.create_linked_lists( 0, hash_map)
 
+    def find_height_wo(self):
+        return self.root.find_height_wo()
+
+    
+    def create_doubly_linked_list(self, node):
+        return self.root.create_doubly_linked_list(node)
+
+    
+    def find_distance_between_nodes(self, data1, data2):
+        return self.root.find_distance_between_nodes(data1, data2)
+       
+    def delete_leaves(self):
+        self.root.delete_leaves()
+    
+    def delete_leaves_2(self):
+        self.root.delete_leaves_2(self.root)
+
+    def find_depth(self, data, depth):
+        return self.root.find_depth(data, depth)
+     
+    def find_max_path(self):
+        find_max_path.max_top = float("-inf")
+        find_max_path(self.root)
+        return find_max_path.max_top
+
+
+def find_max_path(root):
+    if not root:
+        return 0
+    left = find_max_path(root.left)
+    right = find_max_path(root.right)
+    left_right_root = max(max(left, right) + root.data, root.data)
+    left_right_root_subtree = max(left_right_root, left + right + root.data)
+    find_max_path.max_top = max(find_max_path.max_top, left_right_root_subtree)
+    return left_right_root
+
 if __name__ == '__main__':
     tree = Tree()
-    tree.insert(5)
-    tree.insert(6)
-    tree.insert(5) # should return false
-    tree.insert(7)
-    tree.insert(8)
+    tree.insert(12)
+    tree.insert(13)
+    tree.insert(14)
+    tree.insert(15)
     tree.insert(4)
     tree.insert(2)
     tree.insert(3)
-    #tree.pre_order_traversal()
+    tree.insert(1)
+    tree.insert(8)
+    #print(tree.find_height_wo())
+    #print(tree.find_height_again())
+    tree.pre_order_traversal()
     #print("height of tree is %d"%tree.find_height())
     #print("depth of node 8 is %d"%tree.find_depth(8))
-    print(tree.find_max())
+    #print(tree.find_max())
     #print(tree.find_min())
     #print("left view of tree")
     #tree.left_view()
     #print(tree.lowest_common_ancestor(4, 6))
-    hash_map = {}
-    tree.create_linked_list_each_depth(hash_map)
-    for key, value in hash_map.items():
+    #hash_map = {}
+    #tree.create_linked_list_each_depth(hash_map)
+    """for key, value in hash_map.items():
         print("depth %d"%key)
         while (value):
             print(value.data)
-            value = value.next_node
-
+            value = value.next_node"""
+    print("-------------------")
+    '''node = Link_Node()
+    tree.create_doubly_linked_list(node)
+    while (node):
+        print(node.data)
+        node = node.next_node
+    print(tree.find_distance_between_nodes(13, 15))'''
+    #tree.delete_leaves()
+    #print(tree.find_depth(15, 0))
+    #tree.delete_leaves_2()
+    #tree.pre_order_traversal()
+    print(tree.find_max_path())

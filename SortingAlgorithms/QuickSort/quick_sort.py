@@ -10,34 +10,25 @@
 
 #The quick sort algorithm uses divide and conquer to gain the same advantages as merge sort (n logn) but without additional storage. When the list is not able to be divded by half then the performance diminishes. 
 
+#quick sort is better for a smaller number of elmeents. 
+
+#At any points all elements between the right of partition index and 
 
 def QuickSort(A, start, end):
-    if (start >= end):
-        return 
-    partition_index = Partition(A, start, end)
-    #divide and conquer methodology
-    QuickSort(A, start, partition_index -1 )
+    if start >= end:
+        return
+    partition_index = partition(A, start, end)
+    QuickSort(A, start, partition_index - 1)
     QuickSort(A, partition_index + 1, end)
 
-
-def Partition(A, start, end):
-    #The partition index is essentially used to reprsent the partition
-    #Elements in the array are iterated through and compare against the
-    #pivot value if they are smaller then the value at the partitoin index 
-    #and the element in the array we are currently at within the iteration are 
-    #swapped. Finally because the partition index is just a representation of 
-    # the actual partition we swap the two variables
+def partition(A, start, end):
     pivot = A[end]
     partition_index = start
-    for i in range(start, end):
-        if A[i] <= pivot and partition_index != i:
-            temporary = A[i]
-            A[i] = A[partition_index]
-            A[partition_index] = temporary
+    for element in range(start, end):
+        if A[element] <= pivot:
+            A[element], A[partition_index] = A[partition_index], A[element]
             partition_index += 1
-    temporary = A[partition_index]
-    A[partition_index] = A[end]
-    A[end] = temporary
+    A[partition_index], A[end] = A[end], A[partition_index]
     return partition_index
 
 
@@ -45,4 +36,4 @@ if __name__ == '__main__':
     A = [7,6,6,5,4,3,2,2,1,0,0]
     QuickSort(A, 0, len(A) - 1)
     for value in A:
-        print (value)
+
