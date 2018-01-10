@@ -1,0 +1,57 @@
+There are 4 sections of memory generally for code. One segment is designed to store instructions, the scond instructions is static or global they are accssible during the whole lifecycle of an application for global variables. One section is used for accessing local variables, this is called the stack.
+
+
+Heap is a portion of memory which is often used when you are dynamically creating something (with the new key word in java or in c++). When an additional structure is created on the heap we have a variable on the stack which points to this location on the heap. When we are done using this variable (the one we just created with the new keyword) we can delete it by using the key word free. This will rid the pointe rwhich points to the variable on the heap. However if you dont use the free key word it will remain in the heap until the end of the lifecycle of the program. If you allocate an array and you malloc to create this variable on the heap the variable will poit to the beginning of this array. This is why in recursion when you use pointers you can access the same pointer in a previous function call, because it is stored in the heap. The way the heap works in C++ also is that it will free some memory up on the heap and return a pointer to the variable. The pointer will contain the address of the location of this new variable in the heap. The pointer is stored on the stack.
+
+
+https://www.youtube.com/watch?v=_8-ht2AKyH4
+
+Check this youtube video out for more questions
+
+The memory or the ram is where memory is allocated or the stack exists. Generally integers are 4 bytes, chars are 1 bytes, and floats are 4 byts in c++
+
+When we declare an int A[5] then we create 5 integer values and they will be stored as a block of 5 consecutive integers. 
+
+
+int x = 5 //lets assume 5 is stored at byte 300 in the RAM or in memory
+int *p;
+p = &x
+print p  //prints the address of where x is stored (byte  300)
+print *p  //prints the value at the address where x is stored
+
+p = p + 1 //moves where the location of p was by 4 bytes (to the next int)
+
+
+let say int A[5]
+        int * p
+        p = &A[0]
+        print p
+        print *p
+
+In this case when we declare a pointer and point it to the first element in the array. When we dereference it we get the value stored in A[0]. When we just print the value of A we get the value stored in A[0]
+
+If you also just use the value A instead of &A[0] p still points to the address of A. If you increment A by 1 we will get the address of A (which was initially 200) +n  4 which will then be 204. If you then do *(A+1) you wil get the value stored at address value 204
+p still points to the address of A. If you increment A by 1 we will get the address of A (which was initially 200) +n  4 which will then be 204. If you then do *(A+1) you wil get the value stored at address value 204
+
+*(A + i) = A[i]
+
+&A[i] = or A + i (A = &A[0])
+
+
+A = [2 4 5 8 1]
+
+
+What is garbage collection?
+
+Garbage collection is a form or method of removing objects on the heap that are not being referenced by items on the stack. For example in java or in python if you create a variable a and set it to 5, whats happening in the memory (split into heap and stack memory) is that the variable a on the stack is pointing to an object in the heap with tne enumeration of 5. The moment i write del(a) I delete the binding between a and 5, because there are no other elemnets on the stack that reference 5 anymore the garbage collector removes 5 fromo the heap
+
+However consider in C++ where there is no garbage collector
+
+int a=5
+int b = 6
+int *p
+//p now points to the address location of a
+p = &a
+//however if now I point p at b, a will not be removed from the heap (which is the job of the garbage collctor)
+p = &b
+
