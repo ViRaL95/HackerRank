@@ -1,0 +1,61 @@
+UML stands for Unified Modeling Language. 
+
+Lets say we're going to make a system for a zoo. 
+
+We write the class name on the top of the UML diagram
+
+In the middle stage we write the variables of the Animal class, and then we should have a colon
+and the type of the variable. 
+
+Visibility of a method or an attribute
+
+A private member is represented by a - symbol. This is an attribute or a method which cant be accessed by any other class or subclass
+
+A public member is represented through a +. An attribute or a method is public which means they can be accessed by another class
+
+A hash symbol (#) means an attribute or a method is public. This is an attribute or a method that cn be accessed by the same class or a subclass.
+
+The tilda symbol (~) means that any other members of the same package can use an attribute eor a method 
+
+The last section are methods that describe the behavior of this cloass
+
+Methods need to be formatted a certain way
+-------------------
+       Animal
+-------------------
+-name: string
+-id: int
+-age: int
+-------------------
+-setName()
+-eat()
+-------------------
+
+Now we must map the relationship between different classes. Lets say we want three different types of animals: Tortois Otter Slow Loris. 
+
+If we want to have  common property among all animals we can simply add the attribute type in the animal class itself. Instead if one of the animals need to have a differing property we would add the attribute to it. It is important to note that a subclass will inherit all the the public and protected members of its parent, not the private members
+
+We want to make animal an abstract class because everytime we want to instantiate an object we will instantiate a tortoise, slow loris or an otter but we wont want to instantiate an animal. To show that something is an abstract class you should put it in Italics
+
+
+Another important concept is multiplicity. 
+Multiplicity
+---------
+3..* (3 or more)
+1..* (1 or more)
+0..* (0 or more)
+0..1 (0 to 1)
+1 (just exactly 1)
+
+
+We must know of how many types a subclass exists for a given parent class. For example given a Visitor Center 1 Lobby Exists but however 3 or more bathrooms exists. 3..* represents 3 or more. If we would like to represent 1 or more just write 1..*. If we would like 0 or more write 0..* 0..1 is 0 to one
+
+
+
+We can also describe the association between two classes such as how an otter eats a sea urchin
+
+
+
+Composition
+-------------
+When a child object couldnt exist without its parent object. If we want to specify the visitors center should have a lobby. The diamond means that if you were to tear down the visitors center the lobby and the bathrooms would no longer exist

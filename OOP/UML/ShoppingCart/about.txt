@@ -1,0 +1,20 @@
+In this shopping cart design we can see that we have 
+
+User
+------
+Each user has private attributes: userid, password, loginstatus, and registerData. We can verify the login info using a public method known as verifyLogin which returns a  boolean. 
+
+
+As you can see the customer has the ability to register however an administrator does not. The reason for this is because a new administrator can not be created, however a new customer can be created. The only change I can think of is that the User class should be an abstract class because one does not create a new instance of it, just a customer.
+
+Nowe we see we have a Customers Class which is a subclass of the Parent Class. This child class inherits all the methods and attributes of the User class.
+
+We then have diamonds from the customer to the shopping cart class. If the customer were to be destroyed the shopping cart would also be destroyed, and so woudl the order. Essentially the shopping cart and the order can not exist without the customer.
+
+We can see that a customer has  0 or more orders. However an order can belong to only one customer. Each order has one and only one order details.
+
+
+Another change I think that one can make is that for a single customer exactly 1 shopping cart should exist for him/her, instead of 0 or more...
+
+
+
