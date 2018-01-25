@@ -1,7 +1,0 @@
-Merge Sort - O(nlogn) - Worst case running tim e
-            0(n) - Space Complexity 
-
-Quick Sort - O(n logn) - Average case running time 
-             O(n^2) - Worst case running time (almost always avoided when using randomized version of quicksort)
-        
-            

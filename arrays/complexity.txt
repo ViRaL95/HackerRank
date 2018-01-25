@@ -1,4 +1,0 @@
-In order to store an element it takes o(n) time
-Insertion into an array takes 0(1) if the array has available space, if the array is filled we create a new larger array usually twice the size and then we have to copy the elements of the old array into this new array this is now 0(n)
-Removal of an elment from an array takes 0(n) time because we must shift elements to the left
-
