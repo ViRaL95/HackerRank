@@ -157,19 +157,6 @@ class Node:
         if self.right:
             self.right.create_linked_lists(depth + 1, hash_map)
 
-    def check_if_in_hash_map(self, hash_map, depth, node):
-        if depth not in hash_map:
-            print("start")
-            print("depth %d" %depth)
-            hash_map[depth] = node
-        else:
-            print("yeah")
-            head = hash_map[depth]
-            while (head.next_node):
-                head = head.next_node
-            head.next_node = node
-
-
     def create_doubly_linkedlist(self, prev_node):
         if self.left:
             self.left.create_doubly_linked_list(prev_node)
@@ -308,6 +295,11 @@ class Tree:
         find_max_path(self.root)
         return find_max_path.max_top
 
+    def find_sum(self):
+        find_sub_sum.sum_path = 0
+        find_sum(self.root, 12)
+
+    def create_linked_list
 
 def find_max_path(root):
     if not root:
@@ -318,6 +310,29 @@ def find_max_path(root):
     left_right_root_subtree = max(left_right_root, left + right + root.data)
     find_max_path.max_top = max(find_max_path.max_top, left_right_root_subtree)
     return left_right_root
+
+
+def find_sum(root, sum_):
+    if not root:
+        return
+    find_sum(root.left, sum_)
+    find_sum(root.right, sum_)
+    print("-----------------")
+    find_sub_sum(root, sum_)
+
+
+def find_sub_sum(root, sum_):
+    if not root:
+        return
+    print(root.data)
+    if sum_ - root.data ==  0:
+        print("entered for root value of %d",root.data)
+        find_sub_sum.sum_path += 1
+    find_sub_sum(root.left, sum_ - root.data)
+    find_sub_sum(root.right, sum_ - root.data)
+
+
+
 
 if __name__ == '__main__':
     tree = Tree()
@@ -332,7 +347,7 @@ if __name__ == '__main__':
     tree.insert(8)
     #print(tree.find_height_wo())
     #print(tree.find_height_again())
-    tree.pre_order_traversal()
+    #tree.pre_order_traversal()
     #print("height of tree is %d"%tree.find_height())
     #print("depth of node 8 is %d"%tree.find_depth(8))
     #print(tree.find_max())
@@ -358,4 +373,8 @@ if __name__ == '__main__':
     #print(tree.find_depth(15, 0))
     #tree.delete_leaves_2()
     #tree.pre_order_traversal()
-    print(tree.find_max_path())
+    #print(tree.find_max_path())
+    tree.find_sum()
+    print(find_sub_sum.sum_path)
+    tree.create_linked_list_depth()
+    #12 is the root. 12 is one value
